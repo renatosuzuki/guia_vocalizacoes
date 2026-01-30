@@ -378,6 +378,48 @@
             display: block;
         }
 
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--sage), transparent);
+        }
+
+        .footer-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--earth-mid);
+            font-style: italic;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .footer-author {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--forest-deep);
+            font-size: 1.2rem;
+            font-style: normal;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-year {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--earth-light);
+        }
+
         /* Animations */
         @keyframes fadeInDown {
             from {
@@ -455,7 +497,7 @@
     <div class="container">
         <header>
             <h1>Guia de Vocalizações</h1>
-            <p class="subtitle">Espécies de Anfíbios Anuros</p>
+            <p class="subtitle">Espécies de Anfíbios Anuros da Fazenda Experimental Edgárdia</p>
         </header>
 
         <div class="search-container">
@@ -470,6 +512,13 @@
 
         <div id="cardsContainer" class="cards-grid"></div>
         <div id="noResults" class="no-results">Nenhuma espécie encontrada</div>
+
+        <footer>
+            <div class="footer-content">
+                Um trabalho de <span class="footer-author">Stephani Pera</span>
+            </div>
+            <div class="footer-year">© 2026</div>
+        </footer>
     </div>
 
     <!-- Modal -->
