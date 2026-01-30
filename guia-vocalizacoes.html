@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Vocalizações - Espécies de Sapos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-deep: #1a3a1a;
+            --forest-mid: #2d5016;
+            --moss-green: #4a7c2e;
+            --leaf-light: #7db856;
+            --sage: #a8c99e;
+            --earth-dark: #5c4033;
+            --earth-mid: #8b6f47;
+            --earth-light: #c9a87c;
+            --cream: #f5f2e8;
+            --white-soft: #fefdfb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white-soft) 50%, #e8f0e0 100%);
+            color: var(--forest-deep);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(125, 184, 86, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(74, 124, 46, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 111, 71, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 70px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            color: var(--forest-deep);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            /* text-transform: lowercase; */
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--moss-green), transparent);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--earth-dark);
+            font-weight: 400;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 50px;
+            position: relative;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 18px 50px 18px 25px;
+            font-size: 1.1rem;
+            font-family: 'Crimson Text', serif;
+            border: 2px solid var(--sage);
+            border-radius: 50px;
+            background: var(--white-soft);
+            color: var(--forest-deep);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 124, 46, 0.08);
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--moss-green);
+            box-shadow: 0 6px 25px rgba(74, 124, 46, 0.15);
+        }
+
+        #searchInput::placeholder {
+            color: var(--earth-light);
+            font-style: italic;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--moss-green);
+            font-size: 1.3rem;
+            pointer-events: none;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--white-soft);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(45, 80, 22, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(45, 80, 22, 0.2);
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background: var(--sage);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.08);
+        }
+
+        .zoom-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(26, 58, 26, 0.85);
+            backdrop-filter: blur(8px);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-size: 1.2rem;
+        }
+
+        .card-image-container:hover .zoom-overlay {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--forest-deep);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .card-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--earth-dark);
+            margin-bottom: 25px;
+            min-height: 80px;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, var(--moss-green), var(--forest-mid));
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 124, 46, 0.3);
+        }
+
+        .btn-play:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 124, 46, 0.4);
+        }
+
+        .btn-play.playing {
+            background: linear-gradient(135deg, var(--earth-mid), var(--earth-dark));
+        }
+
+        .secondary-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .btn-secondary {
+            background: var(--cream);
+            color: var(--forest-deep);
+            border: 2px solid var(--sage);
+            padding: 12px;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--sage);
+            border-color: var(--moss-green);
+            transform: translateY(-2px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 58, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 15px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--forest-deep);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: var(--leaf-light);
+            color: white;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            font-size: 1.3rem;
+            color: var(--earth-mid);
+            font-style: italic;
+            display: none;
+        }
+
+        .no-results.active {
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .secondary-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-close {
+                top: -60px;
+                right: 10px;
+            }
+        }
+
+        /* Staggered card animation */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Guia de Vocalizações</h1>
+            <p class="subtitle">Espécies de Anfíbios Anuros</p>
+        </header>
+
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Pesquisar espécies..."
+                autocomplete="off"
+            >
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div id="cardsContainer" class="cards-grid"></div>
+        <div id="noResults" class="no-results">Nenhuma espécie encontrada</div>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        const frogsData = [
+            {
+                name: "Adenomera bokermanni",
+                description: "(Imagem de Gilberto Vieira). Conhecida como Rã-grilo ou Rãzinha-do-folhiço, possui distribuição restrita aos estados de Minas Gerais, Rio de Janeiro, São Paulo, Paraná e Santa Catarina. Apresenta hábito noturno e é terrestre. Vive em ambientes florestais da Mata Atlântica, permanecendo abrigada em pequenas cavidades no solo ou sob a vegetação e a serrapilheira.",
+                audio: "audios/Adenomera_bokermanni.mp3",
+                image: "fotos/A_bokermanni_KARKS.jpg"
+            },
+            {
+                name: "Boana faber",
+                description: "Popularmente chamada de Rã-martelo, Rã-gladiadora ou Sapo-ferreiro, é típica da Mata Atlântica, ocorrendo nas regiões Sul, Sudeste e Nordeste do Brasil. Habita áreas abertas e bordas de mata, normalmente associada à vegetação arbustiva. Possui atividade noturna e vocaliza tanto na vegetação quanto dentro d’água.",
+                audio: "audios/Boana_faber.mp3",
+                image: "fotos/B_faber.jpg"
+            },
+            {
+                name: "Dendropsophus elianeae",
+                description: "Popularmente conhecida como Pererequinha. Ocorre nos estados do Mato Grosso do Sul e São Paulo, sendo associada a formações abertas de Cerrado. Apresenta hábito noturno e é normalmente encontrada na vegetação herbácea situada nas margens de corpos d’água lênticos. ",
+                audio: "audios/Dendropsophus_elianae.mp3",
+                image: "fotos/D_elianae.jpg "
+            },
+            {
+                name: "Dendropsophus minutus",
+                description: "(Imagem de Gilberto Vieira). Conhecida como Pererequinha-de-ampulheta, apresenta ampla distribuição, ocorrendo em quase toda a América do Sul e parte da América Central. É muito abundante em ambientes aquáticos lênticos de regiões abertas. Costuma vocalizar sobre plantas herbáceas terrestres, aquáticas ou no solo.",
+                audio: "audios/Dendropsophus_minutus.mp3",
+                image: "fotos/D_minutus_KARKS.jpg"
+            },
+            {
+                name: "Dendropsophus nanus",
+                description: "Popularmente conhecida como Pererequinha-do-brejo. Ocorre desde o Nordeste do Brasil até o Norte da Argentina. É extremamente abundante em ambientes aquáticos lênticos de áreas abertas e coloniza com facilidade lagoas artificiais. Possui hábito noturno, mantém atividade quase o ano todo e vocaliza em plantas herbáceas terrestres, aquáticas ou no solo.",
+                audio: "audios/Dendropsophus_nanus.mp3",
+                image: "fotos/D_nanus.jpg"
+            },
+            {
+                name: "Leptodactylus fuscus",
+                description: "Chamada de Rã-assobiadora, distribui-se do Panamá ao Norte da Argentina, estando presente em todos os países a leste da Cordilheira dos Andes. No Brasil ocorre em todos os estados. Possui hábito terrestre, de atividade noturna, típica de áreas abertas com corpos d’água permanentes, onde pode ser extremamente abundante.",
+                audio: "audios/Leptodactylus_fuscus.mp3",
+                image: "fotos/L_fuscus.jpg"
+            },
+            {
+                name: "Leptodactylus labyrinthicus",
+                description: "Conhecida como Rã-pimenta. Ocorre na Argentina, Paraguai e nas regiões Centro-Oeste, Sudeste e Sul do Brasil. Vive em áreas abertas próximas a cursos d’água permanentes ou temporários. Apresenta hábito terrestre e noturno. Produz secreção cutânea que pode causar dor e irritação em mucosas de predadores, característica que originou seu nome popular. ",
+                audio: "audios/Leptodactylus_labyrinthicus.mp3",
+                image: "fotos/L_labyrinthicus.jpg"
+            },
+            {
+                name: "Leptodactylus mystaceus",
+                description: "(Imagem de Gilberto Vieira). Popularmente chamada de Rãzinha-do-folhiço ou rã-marrom. Distribuída pela Colômbia, Venezuela, Guianas, Suriname, Equador, Peru, Bolívia e por quase todas as regiões do Brasil, exceto Sul. Possui hábito terrestre e noturno, sendo associada principalmente à serapilheira de áreas florestadas e bordas de mata, podendo ser vista em áreas abertas eventualmente.",
+                audio: "audios/Leptodactylus_mystaceus.mp3",
+                image: "fotos/L_mystaceus_KARKS.jpg"
+            },
+            {
+                name: "Leptodactylus podicipinus",
+                description: "Popularmente conhecida como Rã-goteira ou rãzinha-pingo-de-chuva. Ocorre na Argentina, Bolívia, Paraguai, Uruguai, e amplamente no Brasil. Vive em  áreas abertas e pastagens, geralmente próximas a lagoas e regiões inundadas. Vocaliza nos meses de chuva e seu canto se assemelha ao som contínuo de gotas caindo. ",
+                audio: "audios/Leptodactylus_pondicipinus.mp3",
+                image: "fotos/L_pondicipinus.jpg"
+            },
+            {
+                name: "Phyllomedusa tetraploidea",
+                description: "Conhecida como Perereca-macaco ou Perereca-das-folhagens. Distribui-se pelo estado de São Paulo, região Sul do Brasil, além de Argentina e Paraguai. O nome da espécie se deve ao fato de possuir cromossomos tetraploides. É arborícola e raramente realiza saltos, preferindo deslocar-se lentamente com passos largos. ",
+                audio: "audios/Phyllomedusa_tetraploidea.mp3",
+                image: "fotos/P_tetraploidea.jpg"
+            },
+            {
+                name: "Physalaemus cuvieri",
+                description: "Popularmente chamada de Rã-cachorro ou Foi-gol-num-foi. Apresenta ampla distribuição, ocorrendo na Argentina, na Bolívia, no Paraguai e em todas as regiões do Brasil. Habita áreas abertas, savanas inundáveis e ambientes antropizados, como pastagens e lagos artificiais. Possui hábito terrestre e noturno. Sua vocalização lembra um latido, originando um de seus nomes populares.",
+                audio: "audios/Physalaemus_cuvieri.mp3",
+                image: "fotos/P_cuvieri.jpg"
+            },
+            {
+                name: "Physalaemus marmoratus",
+                description: "Conhecida como Rã-chorona ou rã-fórmula-um. Ocorre desde a Bahia até São Paulo, e em algumas regiões do Paraguai e da Bolívia. Vive em áreas abertas de Cerrado, com solo arenoso e vegetação herbácea. Tem hábitos terrestres, fossoriais e sazonais, com maior atividade após as chuvas de verão.",
+                audio: "audios/Physalaemus_marmoratus.mp3",
+                image: "fotos/P_marmoratus.jpg"
+            },
+            {
+                name: "Physalaemus nattereri",
+                description: "Popularmente conhecida como Rã-quatro-olhos. Ocorre na Bolívia, Paraguai e nas região Centro-Oeste, Sul e Sudeste do Brasil. Está associada a áreas de savanas com vegetações herbáceas do Cerrado. Possui hábitos terrestres, fossoriais e sazonais. Apresenta duas manchas escuras sobre as glândulas inguinais que funcionam como defesa: sob ameaça, projeta essas marcas em direção ao predador, criando efeito intimidador.",
+                audio: "audios/Physalaemus_nattereri.mp3",
+                image: "fotos/P_nattereri.jpg"
+            },
+            {
+                name: "Rhinella diptycha",
+                description: "(Imagem de Gilberto Vieira). Popularmente chamado de Sapo-cururu, sapo-boi, sapo-cururu-grande. Ocorre nas regiões Sul e Sudeste do Brasil, além dos estados da Bahia e Tocantins. Também pode ser encontrado no Paraguai, Bolívia, Argentina e Uruguai. Vive em áreas abertas, onde possui alta densidade populacional. Possui hábito noturno e terrestre, e costuma cantar na beira de riachos, lagos e lagoas.",
+                audio: "audios/Rhinella_diptycha.mp3",
+                image: "fotos/R_diptycha_KARKS.jpg"
+            },
+            {
+                name: "Rhinella ornata",
+                description: "Conhecido como Sapo-cururuzinho ou sapo-da-floresta. É uma espécie abundante e endêmica da Mata Atlântica, ocorrendo no Sul e Sudeste do Brasil, na Argentina e Paraguai. Está associado principalmente a áreas florestadas e à serrapilheira, mas pode ser encontrado em áreas abertas eventualmente. Tem atividade noturna e terrestre, cantando próximo às margens de riachos, lagos e lagoas.",
+                audio: "audios/Rhinella_ornata.mp3",
+                image: "fotos/R_ornata.jpg"
+            },
+            {
+                name: "Scinax fuscovarius",
+                description: "(Imagem de Gilberto Vieira). Chamada de Perereca-do-banheiro ou raspa-cuia. Ocorre em diversos biomas, sendo encontrada principalmente nas regiões Sul, Sudeste e Centro-Oeste do Brasil, além dos estados da Bahia e Tocantins. Também ocorre na Argentina, Paraguai e Bolívia. Vive em áreas abertas, possui hábito noturno e vocaliza em brejos e lagos, associada à vegetação arbustiva, herbácea ou ao solo.  ",
+                audio: "audios/Scinax_fuscovarius.mp3",
+                image: "fotos/S_fuscovarius_KARKS.jpg"
+            },
+            {
+                name: "Trachycephalus typhonius",
+                description: "Popularmente conhecida como Perereca-grudenta ou perereca-leopardo. Apresenta distribuição ampla, ocorrendo do México ao Norte da Argentina, estando presente em todos os estados do Brasil. Possui hábito noturno e arborícola, ocorrendo em diversos ambientes de áreas abertas e florestadas. Quando ameaçada, produz uma secreção grudenta e tóxica.",
+                audio: "audios/Trachycephalus_typhonius.mp3",
+                image: "fotos/T_typhonius.jpg"
+            },
+        ];
+
+        // Ordena alfabeticamente
+        frogsData.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Elementos DOM
+        const cardsContainer = document.getElementById('cardsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+
+        // Audio player global
+        const audioPlayers = new Map();
+        let currentAudio = null;
+        let currentPlayButton = null;
+
+        // Renderiza os cards
+        function renderCards(data) {
+            cardsContainer.innerHTML = '';
+            
+            if (data.length === 0) {
+                noResults.classList.add('active');
+                return;
+            }
+            
+            noResults.classList.remove('active');
+            
+            data.forEach(frog => {
+                const card = createCard(frog);
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        // Cria um card
+        function createCard(frog) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            card.innerHTML = `
+                <div class="card-image-container" data-image="${frog.image}">
+                    <img src="${frog.image}" alt="${frog.name}" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">${frog.name}</h2>
+                    <p class="card-description">${frog.description}</p>
+                    <div class="card-actions">
+                        <button class="btn btn-play" data-audio="${frog.audio}">
+                            <span class="play-icon">▶</span>
+                            <span class="play-text">Reproduzir Vocalização</span>
+                        </button>
+                        <div class="secondary-actions">
+                            <button class="btn btn-secondary" data-action="zoom" data-image="${frog.image}">
+                                <span>🔍 Ver</span>
+                            </button>
+                            <button class="btn btn-secondary" data-action="download-audio" data-audio="${frog.audio}" data-name="${frog.name}">
+                                <span>🎵 Áudio</span>
+                            </button>
+                            <button class="btn btn-secondary" data-action="download-image" data-image="${frog.image}" data-name="${frog.name}">
+                                <span>📷 Foto</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Event listeners
+            const imageContainer = card.querySelector('.card-image-container');
+            imageContainer.addEventListener('click', () => openModal(frog.image));
+            
+            const playButton = card.querySelector('.btn-play');
+            playButton.addEventListener('click', () => toggleAudio(frog.audio, playButton));
+            
+            const zoomButton = card.querySelector('[data-action="zoom"]');
+            zoomButton.addEventListener('click', () => openModal(frog.image));
+            
+            const downloadAudioButton = card.querySelector('[data-action="download-audio"]');
+            downloadAudioButton.addEventListener('click', () => downloadFile(frog.audio, `${frog.name}_audio.mp3`));
+            
+            const downloadImageButton = card.querySelector('[data-action="download-image"]');
+            downloadImageButton.addEventListener('click', () => downloadFile(frog.image, `${frog.name}_image.jpg`));
+            
+            return card;
+        }
+
+        function toggleAudio(audioSrc, button) {
+            const playIcon = button.querySelector('.play-icon');
+            const playText = button.querySelector('.play-text');
+            
+            // Get or create audio instance for this button
+            let audio;
+            if (audioPlayers.has(button)) {
+                audio = audioPlayers.get(button);
+            } else {
+                audio = new Audio(audioSrc);
+                audioPlayers.set(button, audio);
+                
+                audio.addEventListener('ended', () => {
+                    button.classList.remove('playing');
+                    playIcon.textContent = '▶';
+                    playText.textContent = 'Reproduzir Vocalização';
+                });
+            }
+            
+            // Se está tocando outro áudio, para ele
+            if (currentAudio && currentAudio !== audio) {
+                currentAudio.pause();
+                if (currentPlayButton) {
+                    currentPlayButton.classList.remove('playing');
+                    currentPlayButton.querySelector('.play-icon').textContent = '▶';
+                    currentPlayButton.querySelector('.play-text').textContent = 'Reproduzir Vocalização';
+                }
+            }
+            
+            // Toggle play/pause
+            if (audio.paused) {
+                audio.play();
+                button.classList.add('playing');
+                playIcon.textContent = '⏸';
+                playText.textContent = 'Pausar';
+                currentAudio = audio;
+                currentPlayButton = button;
+            } else {
+                audio.pause();
+                button.classList.remove('playing');
+                playIcon.textContent = '▶';
+                playText.textContent = 'Reproduzir Vocalização';
+            }
+        }
+
+        // Abre modal de imagem
+        function openModal(imageSrc) {
+            modalImage.src = imageSrc;
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fecha modal
+        function closeModal() {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                closeModal();
+            }
+        });
+
+        // Download de arquivo
+        function downloadFile(url, filename) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Busca
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                renderCards(frogsData);
+                return;
+            }
+            
+            const filtered = frogsData.filter(frog => 
+                frog.name.toLowerCase().includes(searchTerm) ||
+                frog.description.toLowerCase().includes(searchTerm)
+            );
+            
+            renderCards(filtered);
+        });
+
+        // Tecla ESC fecha modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Renderização inicial
+        renderCards(frogsData);
+    </script>
+</body>
+</html>
