@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia de Vocalizações - Espécies de Anfíbios Anuros</title>
+    <title>Guia de Vocalizações - Espécies de Sapos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
@@ -34,6 +34,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            padding-top: 80px;
         }
 
         body::before {
@@ -49,6 +50,58 @@
                 radial-gradient(circle at 50% 50%, rgba(139, 111, 71, 0.04) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(254, 253, 251, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--sage);
+            padding: 20px 40px;
+            z-index: 100;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--forest-deep);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--forest-mid);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--moss-green);
+            background: var(--sage);
         }
 
         .container {
@@ -170,6 +223,22 @@
             background: var(--sage);
         }
 
+        .label-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--moss-green), var(--forest-mid));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Crimson Text', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(45, 80, 22, 0.4);
+            z-index: 2;
+            animation: slideInLeft 0.5s ease-out;
+        }
+
         .card-image {
             width: 100%;
             height: 100%;
@@ -181,26 +250,7 @@
             transform: scale(1.08);
         }
 
-        .zoom-overlay {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(26, 58, 26, 0.85);
-            backdrop-filter: blur(8px);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            font-size: 1.2rem;
-        }
-
-        .card-image-container:hover .zoom-overlay {
+        .card-image-container:hover {
             opacity: 1;
         }
 
@@ -420,6 +470,102 @@
             color: var(--earth-light);
         }
 
+        /* Contact Section */
+        #contato {
+            scroll-margin-top: 100px;
+        }
+
+        .contact-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--forest-deep);
+            margin-bottom: 20px;
+        }
+
+        .contact-subtitle {
+            font-size: 1.1rem;
+            color: var(--earth-mid);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 124, 46, 0.2);
+        }
+
+        .contact-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+
+        .contact-btn.whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .contact-btn.email {
+            background: linear-gradient(135deg, var(--moss-green), var(--forest-mid));
+            color: white;
+        }
+
+        .contact-btn.email:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 124, 46, 0.4);
+        }
+
+        .whatsapp-contact-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-contact-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1); /* Torna o ícone branco */
+        }
+
+        .contact-icon {
+            font-size: 1.4rem;
+        }
+
+        /* Section divider */
+        .section {
+            min-height: 100vh;
+        }
+
+        #inicio {
+            scroll-margin-top: 80px;
+        }
+
         /* Animations */
         @keyframes fadeInDown {
             from {
@@ -459,6 +605,17 @@
             }
         }
 
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
@@ -494,10 +651,20 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <nav>
+        <div class="nav-content">
+            <a href="#inicio" class="nav-logo">Guia de Vocalizações</a>
+            <ul class="nav-links">
+                <li><a href="#inicio" class="active">Início</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="inicio">
         <header>
             <h1>Guia de Vocalizações</h1>
-            <p class="subtitle">Espécies de Anfíbios Anuros da Fazenda Experimental Edgárdia</p>
+            <p class="subtitle">Espécies de Anfíbios Anuros da Fazenda Experimental Edgárdia - Botucatu, SP</p>
         </header>
 
         <div class="search-container">
@@ -515,11 +682,27 @@
 
         <footer>
             <div class="footer-content">
-                Este guia integra o Trabalho de Conclusão de Curso de <span class="footer-author">Stephani Pera</span>, graduanda em Ciências Biológicas pela UNESP de Botucatu. O material apresenta, com finalidade educativa, registros das vocalizações de espécies de anuros encontradas na área da Fazenda Experimental Edgárdia e não contempla a anurofauna total da região.
+                Este guia integra o Trabalho de Conclusão de Curso de <span class="footer-author">Stephani de Souza Pera</span>, graduanda em Ciências Biológicas pela UNESP de Botucatu. O material apresenta, com finalidade educativa, registros das vocalizações de espécies de anuros encontradas na área da Fazenda Experimental Edgárdia e não contempla a anurofauna total da região.
             </div>
             <div class="footer-year">© 2026</div>
         </footer>
     </div>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact-section">
+        <h2 class="contact-title">Entre em Contato</h2>
+        <p class="contact-subtitle">Tem dúvidas ou sugestões? Fale comigo!</p>
+        <div class="contact-buttons">
+            <a href="https://api.whatsapp.com/send?phone=5519991435078&text=Ol%C3%A1%2C%20Stephani.%20Fiquei%20interessado%28a%29%20no%20Guia%20de%20Vocaliza%C3%A7%C3%B5es%20e%20gostaria%20de%20conversar%21" class="contact-btn email" target="_blank">
+                <span class="whatsapp-contact-icon"><img src="./assets/whatsapp-brands-solid-full.svg" alt="whatsapp icon"></span>
+                <span>WhatsApp</span>
+            </a>
+            <a href="mailto:stephani@pera.bio.br" class="contact-btn email">
+                <span class="contact-icon">✉️</span>
+                <span>E-mail</span>
+            </a>
+        </div>
+    </section>
 
     <!-- Modal -->
     <div id="imageModal" class="modal">
@@ -533,105 +716,139 @@
         const frogsData = [
             {
                 name: "Adenomera bokermanni",
-                description: "(Imagem de Gilberto Vieira). Conhecida como Rã-grilo ou Rãzinha-do-folhiço, possui distribuição restrita aos estados de Minas Gerais, Rio de Janeiro, São Paulo, Paraná e Santa Catarina. Apresenta hábito noturno e é terrestre. Vive em ambientes florestais da Mata Atlântica, permanecendo abrigada em pequenas cavidades no solo ou sob a vegetação e a serrapilheira.",
+                description: "Conhecida como Rã-grilo ou Rãzinha-do-folhiço, possui distribuição restrita aos estados de Minas Gerais, Rio de Janeiro, São Paulo, Paraná e Santa Catarina. Apresenta hábito noturno e é terrestre. Vive em ambientes florestais da Mata Atlântica, permanecendo abrigada em pequenas cavidades no solo ou sob a vegetação e a serrapilheira.",
                 audio: "audios/Adenomera_bokermanni.mp3",
-                image: "fotos/A_bokermanni_KARKS.jpg"
+                image: "fotos/A_bokermanni_KARKS.jpg",
+                hasLabel: true,
+                labelContent: "Imagem de Gilberto Vieira"
             },
             {
                 name: "Boana faber",
                 description: "Popularmente chamada de Rã-martelo, Rã-gladiadora ou Sapo-ferreiro, é típica da Mata Atlântica, ocorrendo nas regiões Sul, Sudeste e Nordeste do Brasil. Habita áreas abertas e bordas de mata, normalmente associada à vegetação arbustiva. Possui atividade noturna e vocaliza tanto na vegetação quanto dentro d’água.",
                 audio: "audios/Boana_faber.mp3",
-                image: "fotos/B_faber.jpg"
+                image: "fotos/B_faber.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Dendropsophus elianeae",
                 description: "Popularmente conhecida como Pererequinha. Ocorre nos estados do Mato Grosso do Sul e São Paulo, sendo associada a formações abertas de Cerrado. Apresenta hábito noturno e é normalmente encontrada na vegetação herbácea situada nas margens de corpos d’água lênticos. ",
                 audio: "audios/Dendropsophus_elianae.mp3",
-                image: "fotos/D_elianae.jpg "
+                image: "fotos/D_elianae.jpg ",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Dendropsophus minutus",
-                description: "(Imagem de Gilberto Vieira). Conhecida como Pererequinha-de-ampulheta, apresenta ampla distribuição, ocorrendo em quase toda a América do Sul e parte da América Central. É muito abundante em ambientes aquáticos lênticos de regiões abertas. Costuma vocalizar sobre plantas herbáceas terrestres, aquáticas ou no solo.",
+                description: "Conhecida como Pererequinha-de-ampulheta, apresenta ampla distribuição, ocorrendo em quase toda a América do Sul e parte da América Central. É muito abundante em ambientes aquáticos lênticos de regiões abertas. Costuma vocalizar sobre plantas herbáceas terrestres, aquáticas ou no solo.",
                 audio: "audios/Dendropsophus_minutus.mp3",
-                image: "fotos/D_minutus_KARKS.jpg"
+                image: "fotos/D_minutus_KARKS.jpg",
+                hasLabel: true,
+                labelContent: "Imagem de Gilberto Vieira"
             },
             {
                 name: "Dendropsophus nanus",
                 description: "Popularmente conhecida como Pererequinha-do-brejo. Ocorre desde o Nordeste do Brasil até o Norte da Argentina. É extremamente abundante em ambientes aquáticos lênticos de áreas abertas e coloniza com facilidade lagoas artificiais. Possui hábito noturno, mantém atividade quase o ano todo e vocaliza em plantas herbáceas terrestres, aquáticas ou no solo.",
                 audio: "audios/Dendropsophus_nanus.mp3",
-                image: "fotos/D_nanus.jpg"
+                image: "fotos/D_nanus.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Leptodactylus fuscus",
                 description: "Chamada de Rã-assobiadora, distribui-se do Panamá ao Norte da Argentina, estando presente em todos os países a leste da Cordilheira dos Andes. No Brasil ocorre em todos os estados. Possui hábito terrestre, de atividade noturna, típica de áreas abertas com corpos d’água permanentes, onde pode ser extremamente abundante.",
                 audio: "audios/Leptodactylus_fuscus.mp3",
-                image: "fotos/L_fuscus.jpg"
+                image: "fotos/L_fuscus.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Leptodactylus labyrinthicus",
                 description: "Conhecida como Rã-pimenta. Ocorre na Argentina, Paraguai e nas regiões Centro-Oeste, Sudeste e Sul do Brasil. Vive em áreas abertas próximas a cursos d’água permanentes ou temporários. Apresenta hábito terrestre e noturno. Produz secreção cutânea que pode causar dor e irritação em mucosas de predadores, característica que originou seu nome popular. ",
                 audio: "audios/Leptodactylus_labyrinthicus.mp3",
-                image: "fotos/L_labyrinthicus.jpg"
+                image: "fotos/L_labyrinthicus.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Leptodactylus mystaceus",
-                description: "(Imagem de Gilberto Vieira). Popularmente chamada de Rãzinha-do-folhiço ou rã-marrom. Distribuída pela Colômbia, Venezuela, Guianas, Suriname, Equador, Peru, Bolívia e por quase todas as regiões do Brasil, exceto Sul. Possui hábito terrestre e noturno, sendo associada principalmente à serapilheira de áreas florestadas e bordas de mata, podendo ser vista em áreas abertas eventualmente.",
+                description: "Popularmente chamada de Rãzinha-do-folhiço ou rã-marrom. Distribuída pela Colômbia, Venezuela, Guianas, Suriname, Equador, Peru, Bolívia e por quase todas as regiões do Brasil, exceto Sul. Possui hábito terrestre e noturno, sendo associada principalmente à serapilheira de áreas florestadas e bordas de mata, podendo ser vista em áreas abertas eventualmente.",
                 audio: "audios/Leptodactylus_mystaceus.mp3",
-                image: "fotos/L_mystaceus_KARKS.jpg"
+                image: "fotos/L_mystaceus_KARKS.jpg",
+                hasLabel: true,
+                labelContent: "Imagem de Gilberto Vieira"
             },
             {
                 name: "Leptodactylus podicipinus",
                 description: "Popularmente conhecida como Rã-goteira ou rãzinha-pingo-de-chuva. Ocorre na Argentina, Bolívia, Paraguai, Uruguai, e amplamente no Brasil. Vive em  áreas abertas e pastagens, geralmente próximas a lagoas e regiões inundadas. Vocaliza nos meses de chuva e seu canto se assemelha ao som contínuo de gotas caindo. ",
                 audio: "audios/Leptodactylus_pondicipinus.mp3",
-                image: "fotos/L_pondicipinus.jpg"
+                image: "fotos/L_pondicipinus.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Phyllomedusa tetraploidea",
                 description: "Conhecida como Perereca-macaco ou Perereca-das-folhagens. Distribui-se pelo estado de São Paulo, região Sul do Brasil, além de Argentina e Paraguai. O nome da espécie se deve ao fato de possuir cromossomos tetraploides. É arborícola e raramente realiza saltos, preferindo deslocar-se lentamente com passos largos. ",
                 audio: "audios/Phyllomedusa_tetraploidea.mp3",
-                image: "fotos/P_tetraploidea.jpg"
+                image: "fotos/P_tetraploidea.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Physalaemus cuvieri",
                 description: "Popularmente chamada de Rã-cachorro ou Foi-gol-num-foi. Apresenta ampla distribuição, ocorrendo na Argentina, na Bolívia, no Paraguai e em todas as regiões do Brasil. Habita áreas abertas, savanas inundáveis e ambientes antropizados, como pastagens e lagos artificiais. Possui hábito terrestre e noturno. Sua vocalização lembra um latido, originando um de seus nomes populares.",
                 audio: "audios/Physalaemus_cuvieri.mp3",
-                image: "fotos/P_cuvieri.jpg"
+                image: "fotos/P_cuvieri.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Physalaemus marmoratus",
                 description: "Conhecida como Rã-chorona ou rã-fórmula-um. Ocorre desde a Bahia até São Paulo, e em algumas regiões do Paraguai e da Bolívia. Vive em áreas abertas de Cerrado, com solo arenoso e vegetação herbácea. Tem hábitos terrestres, fossoriais e sazonais, com maior atividade após as chuvas de verão.",
                 audio: "audios/Physalaemus_marmoratus.mp3",
-                image: "fotos/P_marmoratus.jpg"
+                image: "fotos/P_marmoratus.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Physalaemus nattereri",
                 description: "Popularmente conhecida como Rã-quatro-olhos. Ocorre na Bolívia, Paraguai e nas região Centro-Oeste, Sul e Sudeste do Brasil. Está associada a áreas de savanas com vegetações herbáceas do Cerrado. Possui hábitos terrestres, fossoriais e sazonais. Apresenta duas manchas escuras sobre as glândulas inguinais que funcionam como defesa: sob ameaça, projeta essas marcas em direção ao predador, criando efeito intimidador.",
                 audio: "audios/Physalaemus_nattereri.mp3",
-                image: "fotos/P_nattereri.jpg"
+                image: "fotos/P_nattereri.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Rhinella diptycha",
-                description: "(Imagem de Gilberto Vieira). Popularmente chamado de Sapo-cururu, sapo-boi, sapo-cururu-grande. Ocorre nas regiões Sul e Sudeste do Brasil, além dos estados da Bahia e Tocantins. Também pode ser encontrado no Paraguai, Bolívia, Argentina e Uruguai. Vive em áreas abertas, onde possui alta densidade populacional. Possui hábito noturno e terrestre, e costuma cantar na beira de riachos, lagos e lagoas.",
+                description: "Popularmente chamado de Sapo-cururu, sapo-boi, sapo-cururu-grande. Ocorre nas regiões Sul e Sudeste do Brasil, além dos estados da Bahia e Tocantins. Também pode ser encontrado no Paraguai, Bolívia, Argentina e Uruguai. Vive em áreas abertas, onde possui alta densidade populacional. Possui hábito noturno e terrestre, e costuma cantar na beira de riachos, lagos e lagoas.",
                 audio: "audios/Rhinella_diptycha.mp3",
-                image: "fotos/R_diptycha_KARKS.jpg"
+                image: "fotos/R_diptycha_KARKS.jpg",
+                hasLabel: true,
+                labelContent: "Imagem de Gilberto Vieira"
             },
             {
                 name: "Rhinella ornata",
                 description: "Conhecido como Sapo-cururuzinho ou sapo-da-floresta. É uma espécie abundante e endêmica da Mata Atlântica, ocorrendo no Sul e Sudeste do Brasil, na Argentina e Paraguai. Está associado principalmente a áreas florestadas e à serrapilheira, mas pode ser encontrado em áreas abertas eventualmente. Tem atividade noturna e terrestre, cantando próximo às margens de riachos, lagos e lagoas.",
                 audio: "audios/Rhinella_ornata.mp3",
-                image: "fotos/R_ornata.jpg"
+                image: "fotos/R_ornata.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
             {
                 name: "Scinax fuscovarius",
-                description: "(Imagem de Gilberto Vieira). Chamada de Perereca-do-banheiro ou raspa-cuia. Ocorre em diversos biomas, sendo encontrada principalmente nas regiões Sul, Sudeste e Centro-Oeste do Brasil, além dos estados da Bahia e Tocantins. Também ocorre na Argentina, Paraguai e Bolívia. Vive em áreas abertas, possui hábito noturno e vocaliza em brejos e lagos, associada à vegetação arbustiva, herbácea ou ao solo.  ",
+                description: "Chamada de Perereca-do-banheiro ou raspa-cuia. Ocorre em diversos biomas, sendo encontrada principalmente nas regiões Sul, Sudeste e Centro-Oeste do Brasil, além dos estados da Bahia e Tocantins. Também ocorre na Argentina, Paraguai e Bolívia. Vive em áreas abertas, possui hábito noturno e vocaliza em brejos e lagos, associada à vegetação arbustiva, herbácea ou ao solo.  ",
                 audio: "audios/Scinax_fuscovarius.mp3",
-                image: "fotos/S_fuscovarius_KARKS.jpg"
+                image: "fotos/S_fuscovarius_KARKS.jpg",
+                hasLabel: true,
+                labelContent: "Imagem de Gilberto Vieira"
             },
             {
                 name: "Trachycephalus typhonius",
                 description: "Popularmente conhecida como Perereca-grudenta ou perereca-leopardo. Apresenta distribuição ampla, ocorrendo do México ao Norte da Argentina, estando presente em todos os estados do Brasil. Possui hábito noturno e arborícola, ocorrendo em diversos ambientes de áreas abertas e florestadas. Quando ameaçada, produz uma secreção grudenta e tóxica.",
                 audio: "audios/Trachycephalus_typhonius.mp3",
-                image: "fotos/T_typhonius.jpg"
+                image: "fotos/T_typhonius.jpg",
+                hasLabel: false,
+                labelContent: ""
             },
         ];
 
@@ -673,8 +890,11 @@
             const card = document.createElement('div');
             card.className = 'card';
             
+            const labelHTML = frog.hasLabel ? `<div class="label-badge">${frog.labelContent}</div>` : '';
+
             card.innerHTML = `
                 <div class="card-image-container" data-image="${frog.image}">
+                    ${labelHTML}
                     <img src="${frog.image}" alt="${frog.name}" class="card-image">
                 </div>
                 <div class="card-content">
@@ -687,13 +907,13 @@
                         </button>
                         <div class="secondary-actions">
                             <button class="btn btn-secondary" data-action="zoom" data-image="${frog.image}">
-                                <span>🔍 Ver</span>
+                                <span>🔍 Ver Foto</span>
                             </button>
                             <button class="btn btn-secondary" data-action="download-audio" data-audio="${frog.audio}" data-name="${frog.name}">
-                                <span>🎵 Áudio</span>
+                                <span>🎵 Baixar Áudio</span>
                             </button>
                             <button class="btn btn-secondary" data-action="download-image" data-image="${frog.image}" data-name="${frog.name}">
-                                <span>📷 Foto</span>
+                                <span>📷 Baixar Foto</span>
                             </button>
                         </div>
                     </div>
@@ -805,8 +1025,7 @@
             }
             
             const filtered = frogsData.filter(frog => 
-                frog.name.toLowerCase().includes(searchTerm) ||
-                frog.description.toLowerCase().includes(searchTerm)
+                frog.name.toLowerCase().includes(searchTerm)
             );
             
             renderCards(filtered);
@@ -821,6 +1040,47 @@
 
         // Renderização inicial
         renderCards(frogsData);
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section, #inicio');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
